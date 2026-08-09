@@ -290,6 +290,33 @@ button { font: inherit; color: inherit; }
   .header__cta { display: inline-flex; }
 }
 
+/* ============ 5a. ПОЛОСА «ЭТО ПРОТОТИП» ================================= */
+/* УДАЛИТЬ ПЕРЕД ЗАПУСКОМ: и этот блок стилей, и разметку .notice-proto
+   в каждом html-файле. Пока сайт показывается заказчику, честнее
+   один раз сказать, что готово, чем пять раз объясняться значками. */
+
+.notice-proto {
+  background: var(--petrol-deep);
+  color: #E6DCEC;
+  font-size: var(--fs-util);
+  line-height: 1.5;
+  letter-spacing: .02em;
+}
+.notice-proto div {
+  display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-3);
+  align-items: baseline;
+  padding-block: var(--s-3);
+}
+.notice-proto b { color: var(--white); font-weight: 600; }
+.notice-proto span { color: #B9A6C4; }
+
+/* Метка «в работе» у пунктов карты сайта в подвале */
+.soon {
+  font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: var(--ls-util); text-transform: uppercase;
+  color: #A88FB6; margin-left: .4em; white-space: nowrap;
+}
+
 /* ============ 6. ПЕРВЫЙ ЭКРАН =========================================== */
 
 .hero { padding-block: var(--s-6) var(--s-7); }
