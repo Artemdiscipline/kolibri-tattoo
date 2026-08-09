@@ -83,7 +83,9 @@
 <header class="site-header">
   <div class="container site-header__inner">
 
-    <a class="brand" href="/" aria-label="Салон Колибри, главная страница">
+    <!-- Только относительный путь: href="/" уводит на корень домена,
+         а сайт может лежать в подпапке (GitHub Pages, тестовый поддомен). -->
+    <a class="brand" href="./" aria-label="Салон Колибри, главная страница">
       <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <path d="M6 25c6-1 10-4 12.5-8.5S22 8 26 6c-1 5-2 8-4.5 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M18.5 16.5c3.5-.5 6 .5 7.5 2.5-2.5 1.5-5.5 1.5-8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
