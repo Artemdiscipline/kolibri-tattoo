@@ -69,9 +69,7 @@
   /* Данные лежат в разметке (data-атрибуты на кнопках списка), чтобы
      правка цен и сроков делалась в одном месте — в HTML.                   */
 
-  var map = document.querySelector('[data-painmap]');
-
-  if (map) {
+  Array.prototype.forEach.call(document.querySelectorAll('[data-painmap]'), function (map) {
     var panel = map.querySelector('[data-zone-panel]');
     var buttons = map.querySelectorAll('[data-zone]');
 
@@ -105,15 +103,46 @@
       btn.addEventListener('click', function () { render(btn); });
     });
 
-    /* Стартовое состояние — прокол мочки: самая частая причина прихода. */
-    var first = map.querySelector('[data-zone="lobe"]');
+    /* Стартовое состояние — прокол мочки: самая частая причина прихода.
+       Если её в этой группе нет, берём первую зону списка. */
+    var first = map.querySelector('.zone-list [data-zone="lobe"]')
+             || map.querySelector('.zone-list [data-zone]');
     if (first) render(first);
+  });
+
+  /* ---------- 3a. Переключатель групп зон (страница «Пирсинг») ----------- */
+
+  var tablist = document.querySelector('[data-zone-tabs]');
+
+  if (tablist) {
+    var tabs = tablist.querySelectorAll('[role="tab"]');
+
+    var activate = function (tab, moveFocus) {
+      Array.prototype.forEach.call(tabs, function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !on;
+      });
+      if (moveFocus) tab.focus();
+    };
+
+    Array.prototype.forEach.call(tabs, function (tab, i) {
+      tab.addEventListener('click', function () { activate(tab); });
+      tab.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        activate(tabs[(i + d + tabs.length) % tabs.length], true);
+      });
+    });
   }
 
   /* ---------- 4. Липкая полоса записи на телефоне ------------------------ */
 
   var bar = document.querySelector('.cta-bar');
-  var hero = document.querySelector('.hero');
+  var hero = document.querySelector('.hero, .page-head');
 
   if (bar && hero && 'IntersectionObserver' in window) {
     var barIO = new IntersectionObserver(function (entries) {

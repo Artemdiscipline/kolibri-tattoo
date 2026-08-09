@@ -8,6 +8,10 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* Обязательно: любой класс с display: grid/flex перебивает [hidden]
+   из стилей браузера, и «скрытая» вкладка остаётся видимой. */
+[hidden] { display: none !important; }
+
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 /* Липкая шапка не должна накрывать цель якорной ссылки. */
@@ -400,6 +404,9 @@ button { font: inherit; color: inherit; }
   padding: var(--s-5);
   box-shadow: var(--shadow);
 }
+/* Без JS панель не заполняется — пустую рамку не показываем,
+   весь тот же состав есть в списке ниже. */
+.zone-panel:empty { display: none; }
 .zone-panel h3 { margin-bottom: var(--s-1); }
 .zone-panel__price { font-family: var(--font-display); font-size: 1.75rem; font-weight: 600;
   color: var(--petrol); font-variant-numeric: tabular-nums; margin-bottom: var(--s-4); display: block; }
@@ -428,6 +435,91 @@ button { font: inherit; color: inherit; }
   .painmap { grid-template-columns: 21.25rem minmax(0, 1fr); gap: var(--s-8); align-items: start; }
   .painmap__side { display: grid; gap: var(--s-5); }
 }
+
+/* ============ 9a. КОМПОНЕНТЫ ПОДСТРАНИЦ ================================= */
+
+/* Шапка подстраницы */
+.page-head { padding-block: var(--s-6) var(--s-5); }
+.page-head h1 { margin-bottom: var(--s-4); }
+.breadcrumbs { font-size: var(--fs-small); color: var(--ink-soft); margin-bottom: var(--s-4); }
+.breadcrumbs a { color: var(--ink-soft); display: inline-block; padding-block: .5rem; }
+.breadcrumbs a:hover { color: var(--petrol); }
+
+/* Переключатель групп зон. Горизонтальная прокрутка на телефоне —
+   осознанно: три ярлыка не влезают в 320px без сжатия текста. */
+.tabs {
+  display: flex; gap: var(--s-2);
+  overflow-x: auto; scrollbar-width: none;
+  padding-bottom: var(--s-2); margin-bottom: var(--s-5);
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tabs button {
+  flex: 0 0 auto;
+  min-height: 2.75rem; padding: var(--s-2) var(--s-5);
+  background: transparent; border: 1px solid var(--line);
+  border-radius: var(--r-pill); cursor: pointer;
+  font-weight: 500; font-size: var(--fs-small); white-space: nowrap;
+  transition: background-color .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease);
+}
+.tabs button:hover { border-color: var(--petrol); color: var(--petrol); }
+.tabs button[aria-selected="true"] {
+  background: var(--petrol); border-color: var(--petrol); color: var(--bg);
+}
+
+/* Пронумерованные шаги. Номера здесь не украшение: процедура —
+   реальная последовательность, и порядок несёт смысл для читателя. */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-5); counter-reset: step; }
+.steps li {
+  display: grid; grid-template-columns: 2.25rem 1fr; gap: var(--s-4);
+  counter-increment: step;
+}
+.steps li::before {
+  content: counter(step);
+  font-family: var(--font-display); font-weight: 600; font-size: 1rem;
+  width: 2.25rem; height: 2.25rem; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--petrol-wash); color: var(--petrol);
+}
+.steps b { display: block; margin-bottom: var(--s-1); }
+.steps p { margin: 0; font-size: var(--fs-small); color: var(--ink-soft); }
+.steps time { display: block; margin-top: var(--s-1); font-size: var(--fs-util);
+  font-weight: 600; letter-spacing: var(--ls-util); text-transform: uppercase; color: var(--petrol); }
+
+/* Вопрос-ответ */
+.faq { display: grid; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary {
+  cursor: pointer; list-style: none;
+  padding: var(--s-4) 2.5rem var(--s-4) 0; position: relative;
+  font-weight: 500; min-height: 3.25rem;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: ''; position: absolute; right: var(--s-2); top: 1.6rem;
+  width: 10px; height: 10px; border-right: 2px solid var(--petrol); border-bottom: 2px solid var(--petrol);
+  transform: rotate(45deg); transition: transform .2s var(--ease);
+}
+.faq details[open] summary::after { transform: rotate(-135deg); }
+.faq details > div { padding-bottom: var(--s-5); max-width: var(--measure); color: var(--ink-soft); }
+.faq summary:hover { color: var(--petrol); }
+
+/* Врезка с важным уточнением */
+.callout {
+  display: grid; grid-template-columns: 1.5rem 1fr; gap: var(--s-3);
+  background: var(--petrol-wash); border-radius: var(--r-md);
+  padding: var(--s-4) var(--s-5); color: var(--petrol-deep);
+  font-size: var(--fs-small);
+}
+.callout svg { width: 1.5rem; height: 1.5rem; }
+.callout b { display: block; margin-bottom: var(--s-1); }
+.callout p { margin: 0; }
+
+/* Простая таблица-список «параметр — значение» */
+.spec { margin: 0; display: grid; gap: var(--s-3); }
+.spec > div { display: grid; grid-template-columns: 1fr auto; gap: var(--s-4);
+  align-items: baseline; padding-bottom: var(--s-3); border-bottom: 1px solid var(--line); }
+.spec dt { color: var(--ink-soft); font-size: var(--fs-small); }
+.spec dd { margin: 0; font-weight: 500; font-variant-numeric: tabular-nums; }
 
 /* ============ 10. МАСТЕР ================================================ */
 
