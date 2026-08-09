@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ЗАМЕНИТЬ домен kolibri-tattoo.ru на реальный перед публикацией.
+     Страницы, которых пока нет в проекте, добавляются по мере готовности. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://kolibri-tattoo.ru/</loc><priority>1.0</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/piercing.html</loc><priority>0.9</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/deti.html</loc><priority>0.9</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/tattoo.html</loc><priority>0.8</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/permanent.html</loc><priority>0.8</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/udalenie.html</loc><priority>0.8</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/price.html</loc><priority>0.8</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/obuchenie.html</loc><priority>0.7</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/biomaser.html</loc><priority>0.6</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/masters.html</loc><priority>0.6</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/portfolio.html</loc><priority>0.6</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/faq.html</loc><priority>0.6</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/contacts.html</loc><priority>0.6</priority></url>
+  <url><loc>https://kolibri-tattoo.ru/privacy.html</loc><priority>0.2</priority></url>
+</urlset>

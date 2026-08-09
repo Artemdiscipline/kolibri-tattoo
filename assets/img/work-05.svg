@@ -1,0 +1,13 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800" role="img" aria-label="Плейсхолдер: Работа 05 · Перекрытие">
+  <rect width="100%" height="100%" fill="#F1EEE9"/>
+  <rect x="12" y="12" width="776" height="776" rx="20" fill="none" stroke="#C7D8D6" stroke-width="3" stroke-dasharray="14 12"/>
+  <g transform="translate(343 250) scale(3.5625)" opacity="0.55">
+    <path d="M6 25c6-1 10-4 12.5-8.5S22 8 26 6c-1 5-2 8-4.5 11" fill="none" stroke="#1F5F5B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18.5 16.5c3.5-.5 6 .5 7.5 2.5-2.5 1.5-5.5 1.5-8 0" fill="none" stroke="#1F5F5B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="24.5" cy="8.5" r="1.5" fill="#1F5F5B"/>
+  </g>
+  <g text-anchor="middle" font-family="Segoe UI, Arial, sans-serif">
+    <text x="400" y="400" font-size="36" font-weight="600" fill="#1F5F5B">Работа 05 · Перекрытие</text>
+    <text x="400" y="446" font-size="22" fill="#6B6660">work-05.jpg — 800×800 — заменить</text>
+  </g>
+</svg>

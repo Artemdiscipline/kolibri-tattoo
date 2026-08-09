@@ -1,0 +1,13 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500" role="img" aria-label="Плейсхолдер: Фото кабинета / работы">
+  <rect width="100%" height="100%" fill="#F1EEE9"/>
+  <rect x="12" y="12" width="1176" height="1476" rx="20" fill="none" stroke="#C7D8D6" stroke-width="3" stroke-dasharray="14 12"/>
+  <g transform="translate(514 524) scale(5.34375)" opacity="0.55">
+    <path d="M6 25c6-1 10-4 12.5-8.5S22 8 26 6c-1 5-2 8-4.5 11" fill="none" stroke="#1F5F5B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18.5 16.5c3.5-.5 6 .5 7.5 2.5-2.5 1.5-5.5 1.5-8 0" fill="none" stroke="#1F5F5B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="24.5" cy="8.5" r="1.5" fill="#1F5F5B"/>
+  </g>
+  <g text-anchor="middle" font-family="Segoe UI, Arial, sans-serif">
+    <text x="600" y="750" font-size="55" font-weight="600" fill="#1F5F5B">Фото кабинета / работы</text>
+    <text x="600" y="815" font-size="34" fill="#6B6660">hero-studio.jpg — 1200×1500 — заменить</text>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+# Системное
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Редакторы
+.vscode/
+.idea/
+*.swp
+
+# Локальные черновики и исходники фото
+_drafts/
+_source-photos/
+
+# Если позже появится сборка или зависимости
+node_modules/
+dist/
