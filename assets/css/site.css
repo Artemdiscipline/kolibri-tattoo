@@ -10,6 +10,9 @@
 
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
+/* Липкая шапка не должна накрывать цель якорной ссылки. */
+:target, [id] { scroll-margin-top: calc(var(--header-h) + var(--s-4)); }
+
 body {
   margin: 0;
   background: var(--bg);
@@ -20,7 +23,10 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  /* Страховка от длинных слов вроде «Перманентный» на узких экранах.
+     overflow-x: hidden не ставим намеренно: он маскирует переполнение
+     вместо того, чтобы его чинить, и ломает position: sticky. */
+  overflow-wrap: break-word;
 }
 
 h1, h2, h3, h4 { margin: 0; font-weight: 600; }
@@ -166,7 +172,7 @@ button { font: inherit; color: inherit; }
   display: inline-flex; align-items: center; gap: .4em;
   color: var(--petrol); font-weight: 500; text-decoration: none;
   border-bottom: 1px solid var(--petrol-line);
-  padding-bottom: 2px;
+  padding-block: .5rem 2px;   /* доводит высоту нажатия до ~44px */
 }
 .link-arrow:hover { border-color: var(--petrol); }
 .link-arrow::after { content: '→'; transition: transform .2s var(--ease); }
@@ -213,7 +219,10 @@ button { font: inherit; color: inherit; }
 .card--link { text-decoration: none; transition: border-color .2s var(--ease), transform .2s var(--ease); }
 .card--link:hover { border-color: var(--petrol); }
 
-.card__title { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); }
+/* flex-wrap обязателен: без него минимальная ширина карточки равна
+   «длинное слово + неразрывная цена» и на 320px страница едет вбок. */
+.card__title { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--s-2) var(--s-4); }
+.card__title h3 { min-width: 0; }
 .card__price { font-family: var(--font-display); font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--petrol); }
 .card__note { font-size: var(--fs-small); color: var(--ink-soft); }
 
@@ -243,6 +252,9 @@ button { font: inherit; color: inherit; }
 .brand__mark { width: 26px; height: 26px; flex: none; color: var(--petrol); }
 .brand__city { font-family: var(--font-text); font-size: var(--fs-util); font-weight: 500;
   letter-spacing: var(--ls-util); text-transform: uppercase; color: var(--ink-soft); }
+/* На самых узких экранах город убираем — иначе логотип и «Меню»
+   упираются друг в друга без запаса. */
+@media (max-width: 22.5em) { .brand__city { display: none; } }
 
 .nav-toggle {
   display: inline-flex; align-items: center; gap: var(--s-2);
@@ -286,7 +298,11 @@ button { font: inherit; color: inherit; }
   background: var(--bg-soft);
   order: -1;
 }
-.hero__media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+/* На телефоне фото намеренно низкое: при 4:5 оно съедало экран и кнопка
+   записи уходила ниже сгиба. 16:10 оставляет заголовок, подзаголовок
+   и кнопку в первом экране. */
+.hero__media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+@media (min-width: 30em) { .hero__media img { aspect-ratio: 3 / 2; } }
 
 .hero h1 { margin-bottom: var(--s-4); }
 .hero .lead { margin-bottom: var(--s-5); }
@@ -368,7 +384,8 @@ button { font: inherit; color: inherit; }
   cursor: pointer;
   transition: transform .18s var(--ease), background-color .18s var(--ease);
 }
-.hotspot::before { content: ''; position: absolute; inset: -9px; border-radius: 50%; }
+/* Видимая точка 22px, зона нажатия — 44px, как требует палец. */
+.hotspot::before { content: ''; position: absolute; inset: -11px; border-radius: 50%; }
 .hotspot:hover { transform: translate(-50%, -50%) scale(1.18); }
 .hotspot[aria-pressed="true"] {
   background: var(--coral);
@@ -496,6 +513,7 @@ button { font: inherit; color: inherit; }
 
 .site-footer { background: var(--petrol-deep); color: #DDE7E6; padding-block: var(--s-7) var(--s-6); }
 .site-footer a { color: var(--white); }
+.site-footer p a { display: inline-block; padding-block: .4rem; }
 .site-footer h2 { color: var(--white); }
 .footer__grid { display: grid; gap: var(--s-6); }
 @media (min-width: 48em) { .footer__grid { grid-template-columns: 1.2fr 1fr 1fr; gap: var(--s-6); } }
